@@ -2,8 +2,8 @@ if (window == top) {
     window.addEventListener('keyup', doKeyPress, false)
 }
 
-// g key
-var trigger_key = 71
+var trigger_key = 71 // "g" key
+var trigger_key = 89 // "y" key
 function doKeyPress(e) {
     if (e.ctrlKey && e.keyCode == trigger_key) {
         chrome.runtime.sendMessage({
@@ -16,11 +16,22 @@ function doKeyPress(e) {
 
 document.addEventListener('mousemove', function(e) {
     var srcElement = e.srcElement
-    if (srcElement.nodeName == 'IMG') {
-        chrome.runtime.sendMessage({
-            src: srcElement.src
-        }, function(response) {
-            console.log(response.message)
-        })
+    var srcURL
+    switch (srcElement.nodeName) {
+        case "IMG":
+            srcURL = srcElement.src
+            break;
+        case "VIDEO":
+            srcURL = srcElement.childNodes[0].src
+            break;
     }
+    // console.log(srcElement.childNodes[0].src)
+    // if (srcElement.nodeName == 'IMG') {
+    chrome.runtime.sendMessage({
+        action: "hover",
+        src: srcURL
+    }, function(response) {
+        console.log(response.message)
+    })
+    // }
 }, false)

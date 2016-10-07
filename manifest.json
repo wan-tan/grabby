@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
 
-  "name": "Saucepan",
+  "name": "grabby",
   "description": "Download whatever media you are hovering over with the mouse with a shortcut",
   "version": "1.0",
 

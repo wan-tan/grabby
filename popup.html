@@ -7,18 +7,22 @@
         font-family: "Lucida Grande", Tahoma, sans-serif;
         font-size: 100%;
       }
-      #status {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 400px;
+      #save-button {
+        background: #33a;
+        padding: 10px 20px;
+        text-align: center;
+        color: #fff;
+      }
+      #save-button:hover{
+        background: #55d;
+        cursor: pointer;
       }
     </style>
     <script src="popup.js"></script>
   </head>
   <body>
-    <div id="status"></div>
-    <img id="image-result" hidden>
+      <input id="shortcut-input" placeholder="Shortcut: CTRL + Y"/>
+      <input id="folder-input" placeholder="No folder"/>
+      <div id="save-button">Save</div>
   </body>
 </html>
