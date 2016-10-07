@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+
+  "name": "Saucepan",
+  "description": "Download whatever media you are hovering over with the mouse with a shortcut",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "permissions": [
+    "activeTab",
+    "downloads",
+    "tabs",
+    "https://*/*",
+    "http://*/*",
+    "background"
+  ],
+  "content_scripts": [
+     {
+       "matches": ["http://*/*", "https://*/*"], // run for http & https pages
+       "js": ["content_script.js"],  // key_event.js is injected to the page, this handles key press
+       "run_at": "document_start" // run before everything else, else there will be conflicts at pages which accept keyboard inputs ( eg:google search)
+     }
+   ]
+}
